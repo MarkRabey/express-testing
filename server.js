@@ -19,7 +19,10 @@ const port = process.env.SERVER_PORT || 4567;
 
 const app = express();
 
-app.use(morgan('combined'));
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('combined'));
+}
+
 app.use(express.json());
 app.get('/', (req, res) => res.json({ message: 'Server is online' }));
 
@@ -35,3 +38,5 @@ app.route('/books/:id')
 app.listen(port, () => {
   console.log(`Server listening on port ${ port }`);
 });
+
+module.exports = app;

@@ -43,7 +43,7 @@ async function getBook(req, res) {
  */
 async function deleteBook(req, res) {
   try {
-    const result = await Book.remove({ _id: req.params.id });
+    const result = await Book.deleteOne({ _id: req.params.id });
     res.json({ message: 'Book deleted', result });
   } catch (error) {
     res.send(error);
